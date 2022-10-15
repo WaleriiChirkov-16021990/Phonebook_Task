@@ -8,9 +8,7 @@ def check_user_click(user_click_input):
     while not user_click_input.isdigit():
         print("Вы ввели не число")
         user_click_input = input("Пожалуйста введите номер пункта меню: ")
-        return int(user_click_input)
-    else:
-        return int(user_click_input)
+    return int(user_click_input)
 
 
 def phonebook_interface():
