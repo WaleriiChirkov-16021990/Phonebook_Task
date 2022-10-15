@@ -1,5 +1,4 @@
 from data_input import create_record as cr
-from phonebook_view_records import view_records as vr
 
 print("Добро пожаловать в интерактивное меню телефонного справочника!\n"
       "Пожалуйста, воспользуйтесь меню для дальнейшей работы.")
@@ -13,26 +12,24 @@ def check_user_click(user_click_input):
 
 
 def phonebook_interface():
-    print('\nГлавное меню')
-    print('1. Просмотр записей')
-    print('2. Добавить запись')
-    print('3. Экспорт данных')
-    print('4. Импорт данных')
-    print('5. Поиск записи')
-    print('6. Удаление записи')
-    print('7. Завершение работы')
-    user_click = check_user_click((input("\nВыберите пункт меню: ")))
-    if user_click == 1:
-        print("В базе есть следующие записи: \n")
-        vr()
-        phonebook_interface()
-
-    elif user_click == 2:
-        surname = input("Введите фамилию:")
-        name = input("Введите имя: ")
-        phone_number = input("Введите номер телефона: ")
-        phone_info = input("Введите описание: ")
-        cr(surname, name, phone_number, phone_info)
+    while True:
+        print('\nГлавное меню')
+        print('1. Просмотр записей')
+        print('2. Добавить запись')
+        print('3. Экспорт данных')
+        print('4. Импорт данных')
+        print('5. Поиск записи')
+        print('6. Удаление записи')
+        print('7. Завершение работы')
+        user_click = check_user_click((input("\nВыберите пункт меню: ")))
+        if user_click == 1:
+            print(ngr())
+        elif user_click == 2:
+            surname = input("Введите фамилию:")
+            name = input("Введите имя: ")
+            phone_number = input("Введите номер телефона: ")
+            phone_info = input("Введите описание: ")
+            cr(surname, name, phone_number, phone_info)
 
     elif user_click == 3:
         return True
