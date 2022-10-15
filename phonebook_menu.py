@@ -1,4 +1,4 @@
-
+from data_input import create_record as cr
 
 print("Добро пожаловать в интерактивное меню телефонного справочника!\n"
       "Пожалуйста, воспользуйтесь меню для дальнейшей работы.")
@@ -25,7 +25,11 @@ def phonebook_interface():
         return True
 
     elif user_click == 2:
-        return True
+        surname = input("Введите фамилию:")
+        name = input("Введите имя: ")
+        phone_number = input("Введите номер телефона: ")
+        phone_info = input("Введите описание: ")
+        cr(surname, name, phone_number, phone_info)
 
     elif user_click == 3:
         return True
