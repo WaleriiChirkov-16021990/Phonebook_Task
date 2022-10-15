@@ -2,6 +2,13 @@ print("Добро пожаловать в интерактивное меню т
       "Пожалуйста, воспользуйтесь меню для дальнейшей работы.")
 
 
+def check_user_click(user_click_input):
+    while not user_click_input.isdigit():
+        print("Вы ввели не число")
+        user_click_input = int(input("Пожалуйста введите номер пункта меню: "))
+        return user_click_input
+
+
 def phonebook_interface():
 
         print('\nГлавное меню')
@@ -12,5 +19,6 @@ def phonebook_interface():
         print('5. Поиск записи')
         print('6. Удаление записи')
         print('7. Завершение работы')
+        user_click = int(check_user_click((input("Выберите пункт меню: "))))
 
 phonebook_interface()
