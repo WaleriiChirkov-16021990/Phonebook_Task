@@ -19,6 +19,6 @@ def phonebook_interface():
         print('5. Поиск записи')
         print('6. Удаление записи')
         print('7. Завершение работы')
-        user_click = int(check_user_click((input("Выберите пункт меню: "))))
+        user_click = check_user_click((input("\nВыберите пункт меню: ")))
 
 phonebook_interface()
