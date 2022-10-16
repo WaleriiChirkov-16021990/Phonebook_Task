@@ -93,7 +93,7 @@ def phonebook_interface():
             if user_click == 1:
                 search_canon = "Имя"
                 search_value = input("Введите имя для поиска: ")
-                print(list(enumerate(dp(dict_list, search_canon, search_value))))
+                sp(dict_list, search_canon, search_value)
                 user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
@@ -107,7 +107,7 @@ def phonebook_interface():
             elif user_click == 2:
                 search_canon = "Фамилия"
                 search_value = input("Введите фамилию для поиска: ")
-                print(list(enumerate(dp(dict_list, search_canon, search_value))))
+                sp(dict_list, search_canon, search_value)
                 user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
@@ -121,7 +121,7 @@ def phonebook_interface():
             elif user_click == 3:
                 search_canon = "Телефон"
                 search_value = input("Введите номер телефона для поиска: ")
-                print(list(enumerate(dp(dict_list, search_canon, search_value))))
+                sp(dict_list, search_canon, search_value)
                 user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
@@ -135,7 +135,7 @@ def phonebook_interface():
             elif user_click == 4:
                 search_canon = "Описание"
                 search_value = input("Введите описание для поиска: ")
-                print(list(enumerate(dp(dict_list, search_canon, search_value))))
+                sp(dict_list, search_canon, search_value)
                 user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
