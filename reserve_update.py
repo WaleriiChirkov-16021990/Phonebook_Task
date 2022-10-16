@@ -9,3 +9,4 @@ def reserve_data(dat, path):
     with open(path, 'w', encoding='utf-8') as data:
         for i in dat:
             data.write(f'{i}\n')
+
