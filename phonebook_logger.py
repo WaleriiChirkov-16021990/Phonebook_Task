@@ -3,10 +3,9 @@
 
 import datetime
 
+
 def logger_action(action: str, path):
     today = datetime.datetime.today()
-    with open(path, 'a', encoding='utf-8') as data:
-        data.write(f'{today.strftime("%Y-%m-%d-%H.-%M.%S")} :\
+    with open('log.txt', 'a', encoding='utf-8') as data:
+        data.write(f'{today.strftime("%Y-%m-%d-%H %H:%M")}\
                          Пользователь {action} \n')
-
-
