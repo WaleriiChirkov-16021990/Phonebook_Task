@@ -25,4 +25,4 @@ def import_data(path):
     return(lines)
 
 
-print(import_data(path))
+

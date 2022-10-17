@@ -1,27 +1,17 @@
-import csv
-from import_data import import_data as read_file
+# Данный блок экспортирует все данные получанные в виде списка(словарей)\
+#      и записывает их в указанный пользователем файл в виде строк,\
+#          вставляя между каждым контактом пустую строку.
 
-path = 'records_db.txt'
-data_list = read_file(path)
 
-def export_data_txt(dat):
-    file_name = 'exp_contacts.txt'
-    with open(file_name, 'w', encoding='utf-8') as data:
-        for i in dat:
-            for key, value in i.items():
-                data.write(f'{key} : {value}\n')
+def export_data(dates, path):
+    with open(path, 'w', encoding='utf-8') as data:
+        for i in dates:
+            for keys, values in i.items():
+                data.write(f'{keys}: \t{values}\n')
             data.write('\n')
+    print('Справочник успешно экспортирован!\n')
 
-
-
-def export_data_csv(dct):
-    with open('exp_contacts.csv', 'w') as csvfile:
-        fieldnames = ['Имя', 'Фамилия', 'Телефон', 'Описание']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(dct)
-
-
-
+path = 'record_data.txt'
+l = [{'Имя': 'Валерий', 'Фамилия': 'Чирков', 'Телефон': '89000000001', 'Описание': 'механик'}, {'Имя': 'Михаил', 'Фамилия': 'Чирков', 'Телефон': '89000010101', 'Описание': 'грузчик'}]
 
 
