@@ -70,19 +70,19 @@ def phonebook_interface():
             if user_click == 1:
                 search_canon = "Имя"
                 search_value = input("Введите имя для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             elif user_click == 2:
                 search_canon = "Фамилия"
                 search_value = input("Введите фамилию для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             elif user_click == 3:
                 search_canon = "Телефон"
                 search_value = input("Введите номер телефона для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             elif user_click == 4:
                 search_canon = "Описание"
                 search_value = input("Введите описание для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             else:
                 print("Некорректный ввод. Возврат к главному меню.")
         elif user_click == 6:
