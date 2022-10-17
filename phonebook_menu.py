@@ -65,7 +65,7 @@ def phonebook_interface():
             print("2. Поиск по фамилии")
             print("3. Поиск по номеру телефона")
             print("4. Поиск по описанию\n")
-            user_click = int(input("Выберите критерий поиска указав номер пункта: "))
+            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
             if user_click == 1:
                 search_canon = "Имя"
                 search_value = input("Введите имя для поиска: ")
@@ -90,12 +90,12 @@ def phonebook_interface():
             print("2. Поиск по фамилии")
             print("3. Поиск по номеру телефона")
             print("4. Поиск по описанию\n")
-            user_click = int(input("Выберите критерий поиска указав номер пункта: "))
+            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
             if user_click == 1:
                 search_canon = "Имя"
                 search_value = input("Введите имя для поиска: ")
                 sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
                     continue
@@ -109,7 +109,7 @@ def phonebook_interface():
                 search_canon = "Фамилия"
                 search_value = input("Введите фамилию для поиска: ")
                 sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
                     continue
@@ -123,7 +123,7 @@ def phonebook_interface():
                 search_canon = "Телефон"
                 search_value = input("Введите номер телефона для поиска: ")
                 sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
                     continue
