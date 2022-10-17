@@ -13,5 +13,6 @@ def search_person(dict_list: list, search_canon, search_value):
             if_correct = True
     if if_correct == False:
         print("Значение не найдено")
+    return if_correct
 
 

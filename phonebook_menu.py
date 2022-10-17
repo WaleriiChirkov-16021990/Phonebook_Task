@@ -137,8 +137,8 @@ def phonebook_interface():
             elif user_click == 4:
                 search_canon = "Описание"
                 search_value = input("Введите описание для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                check_data_in_list = sp(dict_list, search_canon, search_value)
+                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                                        "введите '-1' "))
                 if user_click == -1:
                     continue
@@ -152,12 +152,14 @@ def phonebook_interface():
                 print("Некорректный ввод. Возврат к главному меню.")
 
         elif user_click == 7:
-            rd(dic_cont, reserve_copy_path)
+            rd(dict_list, reserve_copy_path)
             print("До свидания!")
+            break
 
         elif user_click == 8:
             try:
-                print(dict_list)
+                for i in dict_list:
+                    print(i)
             except UnboundLocalError:
                 print("Словарь пуст")
         else:
