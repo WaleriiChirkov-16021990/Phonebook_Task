@@ -31,6 +31,7 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
+    dict_list = id(import_path) # думаю, что список должен заполниться при запуске программы.
     while True:
         print('\nГлавное меню')
         print('1. Просмотр записей')
