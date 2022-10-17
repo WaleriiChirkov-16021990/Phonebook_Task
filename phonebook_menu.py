@@ -30,6 +30,7 @@ def check_user_click(user_click_input):
 
 
 def phonebook_interface():
+    global dict_list
     while True:
         print('\nГлавное меню')
         print('1. Просмотр записей')
