@@ -85,7 +85,6 @@ def phonebook_interface():
             log_act(f'вышел из программы', log_path)
             print("До свидания!")
         else:
-            log_act(f'неверно воспользовался меню', log_path)
             print("Такого пункта нет.\nВведите цифру из меню.")
 
 
