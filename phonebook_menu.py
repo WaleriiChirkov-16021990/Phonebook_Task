@@ -31,6 +31,8 @@ def check_user_click(user_click_input):
 
 
 def phonebook_interface():
+    global dict_list
+    dict_list = id(import_path) # думаю, что список должен заполниться при запуске программы.
     while True:
         print('\nГлавное меню')
         print('1. Просмотр записей')
@@ -68,23 +70,23 @@ def phonebook_interface():
             print("2. Поиск по фамилии")
             print("3. Поиск по номеру телефона")
             print("4. Поиск по описанию\n")
-            user_click = int(input("Выберите критерий поиска указав номер пункта: "))
+            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
             if user_click == 1:
                 search_canon = "Имя"
                 search_value = input("Введите имя для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             elif user_click == 2:
                 search_canon = "Фамилия"
                 search_value = input("Введите фамилию для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             elif user_click == 3:
                 search_canon = "Телефон"
                 search_value = input("Введите номер телефона для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             elif user_click == 4:
                 search_canon = "Описание"
                 search_value = input("Введите описание для поиска: ")
-                print(sp(dict_list, search_canon, search_value))
+                sp(dict_list, search_canon, search_value)
             else:
                 print("Некорректный ввод. Возврат к главному меню.")
         elif user_click == 6:
@@ -93,18 +95,18 @@ def phonebook_interface():
             print("2. Поиск по фамилии")
             print("3. Поиск по номеру телефона")
             print("4. Поиск по описанию\n")
-            user_click = int(input("Выберите критерий поиска указав номер пункта: "))
+            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
             if user_click == 1:
                 search_canon = "Имя"
                 search_value = input("Введите имя для поиска: ")
                 sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '-1' "))
-                if user_click == -1:
+                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                                       "введите '0' "))
+                if user_click == 0:
                     continue
                 else:
                     try:
-                        dict_list.pop(user_click)
+                        dict_list.pop(user_click - 1)
                         print("Запись успешно удалена")
                     except IndexError:
                         print("Такой записи не существует")
@@ -112,13 +114,13 @@ def phonebook_interface():
                 search_canon = "Фамилия"
                 search_value = input("Введите фамилию для поиска: ")
                 sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '-1' "))
-                if user_click == -1:
+                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                                       "введите '0' "))
+                if user_click == 0:
                     continue
                 else:
                     try:
-                        dict_list.pop(user_click)
+                        dict_list.pop(user_click - 1)
                         print("Запись успешно удалена")
                     except IndexError:
                         print("Такой записи не существует")
@@ -126,9 +128,9 @@ def phonebook_interface():
                 search_canon = "Телефон"
                 search_value = input("Введите номер телефона для поиска: ")
                 sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '-1' "))
-                if user_click == -1:
+                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                                       "введите '0' "))
+                if user_click == 0:
                     continue
                 else:
                     try:
@@ -139,23 +141,25 @@ def phonebook_interface():
             elif user_click == 4:
                 search_canon = "Описание"
                 search_value = input("Введите описание для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '-1' "))
-                if user_click == -1:
-                    continue
+                check_data_in_list = sp(dict_list, search_canon, search_value)
+                if check_data_in_list is True:
+                    user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
+                                       "введите '0' "))
+                    if user_click == 0:
+                        continue
+                    else:
+                        try:
+                            dict_list.pop(user_click-1)
+                            print("Запись успешно удалена")
+                        except IndexError:
+                            print("Такой записи не существует")
                 else:
-                    try:
-                        dict_list.pop(user_click)
-                        print("Запись успешно удалена")
-                    except IndexError:
-                        print("Такой записи не существует")
-            else:
-                print("Некорректный ввод. Возврат к главному меню.")
+                    print("Некорректный ввод. Возврат к главному меню.")
 
         elif user_click == 7:
             try:
-                print(dict_list)
+                for i in dict_list:
+                    print(i)
             except UnboundLocalError:
                 print("Словарь пуст")
         elif user_click == 8:
