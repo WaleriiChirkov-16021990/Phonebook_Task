@@ -20,7 +20,7 @@ def import_data(path):
             date_lo.append(date[0][i])
     for j in range(0, len(date_lo), 8):
         temp = date_lo[j:j+8:1]
-        dict_ = {temp[i] : temp[i + 1] for i in range(0, len(temp), 2)}
+        dict_ = {temp[i] : temp[i + 1] for i in range(0, len(temp) - 1, 2)}
         lines.append(dict_)
     return(lines)
 

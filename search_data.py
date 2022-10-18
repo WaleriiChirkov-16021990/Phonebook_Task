@@ -27,7 +27,7 @@ def search_person(dict_list: list, search_canon, search_value):
             print(count - 1, j)
             if_correct = True
     if not if_correct:
-        print("Значение не найдено")
+        print("Совпадений не найдено")
     return if_correct
 
 

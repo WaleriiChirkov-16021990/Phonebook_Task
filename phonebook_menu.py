@@ -56,7 +56,9 @@ def phonebook_interface():
                 rnc(dic_cont, path)
                 log_act(f'добавил контакт:{dic_cont.get("Фамилия")}')
                 dict_list.append(dic_cont)
-                print(dict_list)
+            else:
+                dict_list = check(dict_list, dic_cont)
+            print(dict_list)
         elif user_click == 3:
             print('1.Экспорт в .csv')
             print('2.Экспорт в .txt')
