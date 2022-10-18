@@ -19,16 +19,15 @@ def delete_person(dict_list: list, search_canon, search_value):
 
 
 def search_person(dict_list: list, search_canon, search_value):
-    if_correct = None
+    if_correct = False
     count = 1  # в таблицах нумерация начинается с единицы обычно
     for j in dict_list:
         count += 1
         if j[search_canon] == search_value:
             print(count - 1, j)
-            if_correct = dict.fromkeys(f'{count-1}', j)
+            if_correct = True
     if not if_correct:
         print("Совпадений не найдено")
-        if_correct = False
     return if_correct
 
 
