@@ -17,7 +17,7 @@ from import_csv import import_data as idc
 path = 'records_db.txt'
 reserve_copy_path = 'reserve_copy.txt'
 export_path = 'export_data.txt'
-import_path = 'records_db.txt'
+import_path = 'export_data.txt'
 import_path_csv = 'export.csv'
 
 
@@ -34,7 +34,7 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
-    dict_list = id(import_path)
+    dict_list = id(path)
     while True:
         log_act(f'зашел в главное меню')
         print('\nГлавное меню')
@@ -75,8 +75,8 @@ def phonebook_interface():
             if user_click == 1:
                 dict_list = idc(import_path_csv)
                 log_act(f'импортировал данные')
-            else:
-                dict_list = id(import_path_csv)
+            elif user_click == 2:
+                dict_list = id(import_path)
                 log_act(f'импортировал данные')
             print(dict_list)
 

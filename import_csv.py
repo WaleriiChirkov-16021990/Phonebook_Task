@@ -13,7 +13,7 @@ def import_data(path):
     from_file = []
     read_lst_dct = []
 
-    with open(path, 'r', newline='') as csvfile:
+    with open(path, 'r',encoding='utf-8', newline='') as csvfile:
         file_reader = csv.reader(csvfile, delimiter=',')
         for row in file_reader:
             from_file.append(row)
