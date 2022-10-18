@@ -8,7 +8,8 @@ from import_data import import_data as id
 from search_data import search_person as sp
 from search_data import delete_person as dp
 from check_new_contact import check_new_contact as check
-
+from search_data import search_interactive_menu as sim
+from search_data import search_menu_click as smc
 
 
 dict_list = []
@@ -41,8 +42,7 @@ def phonebook_interface():
         print('4. Импорт данных')
         print('5. Поиск записи')
         print('6. Удаление записи')
-        print('7. Показать словарь') # для тестирования
-        print('8. Завершение работы')
+        print('7.Завершение работы')
         user_click = check_user_click((input("\nВыберите пункт меню: ")))
         if user_click == 1:
             print("В базе есть следующие записи: \n")
@@ -65,105 +65,16 @@ def phonebook_interface():
             print(dict_list)
 
         elif user_click == 5:
-            print("Вы в меню поиска")
-            print("1. Поиск по имени")
-            print("2. Поиск по фамилии")
-            print("3. Поиск по номеру телефона")
-            print("4. Поиск по описанию\n")
-            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
-            if user_click == 1:
-                search_canon = "Имя"
-                search_value = input("Введите имя для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            elif user_click == 2:
-                search_canon = "Фамилия"
-                search_value = input("Введите фамилию для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            elif user_click == 3:
-                search_canon = "Телефон"
-                search_value = input("Введите номер телефона для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            elif user_click == 4:
-                search_canon = "Описание"
-                search_value = input("Введите описание для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            else:
-                print("Некорректный ввод. Возврат к главному меню.")
+            user_click = check_user_click(sim())
+            user_search_canon, user_search_value = smc(user_click)
+            sp(dict_list, user_search_canon, user_search_value)
         elif user_click == 6:
-            print("Вы в меню поиска")
-            print("1. Поиск по имени")
-            print("2. Поиск по фамилии")
-            print("3. Поиск по номеру телефона")
-            print("4. Поиск по описанию\n")
-            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
-            if user_click == 1:
-                search_canon = "Имя"
-                search_value = input("Введите имя для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                if user_click == 0:
-                    continue
-                else:
-                    try:
-                        dict_list.pop(user_click - 1)
-                        print("Запись успешно удалена")
-                    except IndexError:
-                        print("Такой записи не существует")
-            elif user_click == 2:
-                search_canon = "Фамилия"
-                search_value = input("Введите фамилию для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                if user_click == 0:
-                    continue
-                else:
-                    try:
-                        dict_list.pop(user_click - 1)
-                        print("Запись успешно удалена")
-                    except IndexError:
-                        print("Такой записи не существует")
-            elif user_click == 3:
-                search_canon = "Телефон"
-                search_value = input("Введите номер телефона для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                if user_click == 0:
-                    continue
-                else:
-                    try:
-                        dict_list.pop(user_click)
-                        print("Запись успешно удалена")
-                    except IndexError:
-                        print("Такой записи не существует")
-            elif user_click == 4:
-                search_canon = "Описание"
-                search_value = input("Введите описание для поиска: ")
-                check_data_in_list = sp(dict_list, search_canon, search_value)
-                if check_data_in_list is True:
-                    user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                    if user_click == 0:
-                        continue
-                    else:
-                        try:
-                            dict_list.pop(user_click-1)
-                            print("Запись успешно удалена")
-                        except IndexError:
-                            print("Такой записи не существует")
-                else:
-                    print("Некорректный ввод. Возврат к главному меню.")
-
+            user_click = check_user_click(sim())
+            user_search_canon, user_search_value = smc(user_click)
+            sp(dict_list, user_search_canon, user_search_value)
+            dp(dict_list, user_search_canon, user_search_value)
         elif user_click == 7:
-            try:
-                for i in dict_list:
-                    print(i)
-            except UnboundLocalError:
-                print("Словарь пуст")
-        elif user_click == 8:
-            rd(dic_cont, reserve_copy_path)
+            rd(dict_list, reserve_copy_path)
             print("До свидания!")
         else:
             print("Такого пункта нет.\nВведите цифру из меню.")
