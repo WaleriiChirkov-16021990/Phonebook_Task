@@ -10,11 +10,11 @@ def delete_person(dict_list: list, search_canon, search_value):
         return True
     try:
         dict_list.pop(user_click - 1)
-        log_act(f'Пользователь удалил контакт с критерием:{search_canon} и значением {search_value}', log_path)
+        log_act(f'Пользователь удалил контакт с критерием:{search_canon} и значением {search_value}')
         print("Запись успешно удалена")
         return dict_list
     except IndexError:
-        log_act(f'Пользователь пытался удалить контакт с критерием:{search_canon} и значением {search_value}', log_path)
+        log_act(f'Пользователь пытался удалить контакт с критерием:{search_canon} и значением {search_value}')
         print("Такой записи не существует")
 
 
