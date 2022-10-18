@@ -1,3 +1,8 @@
+from phonebook_logger import logger_action as log_act
+
+log_path = 'log.txt'
+
+
 def delete_person(dict_list: list, search_canon, search_value):
     user_click = int(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
                            "введите '0' "))
@@ -5,9 +10,11 @@ def delete_person(dict_list: list, search_canon, search_value):
         return True
     try:
         dict_list.pop(user_click - 1)
+        log_act(f'Пользователь удалил контакт с критерием:{search_canon} и значением {search_value}', log_path)
         print("Запись успешно удалена")
         return dict_list
     except IndexError:
+        log_act(f'Пользователь пытался удалить контакт с критерием:{search_canon} и значением {search_value}', log_path)
         print("Такой записи не существует")
 
 
@@ -19,7 +26,7 @@ def search_person(dict_list: list, search_canon, search_value):
         if j[search_canon] == search_value:
             print(count - 1, j)
             if_correct = True
-    if if_correct == False:
+    if not if_correct:
         print("Значение не найдено")
     return if_correct
 

@@ -12,7 +12,6 @@ from search_data import search_interactive_menu as sim
 from search_data import search_menu_click as smc
 
 
-dict_list = []
 path = 'records_db.txt'
 log_path = 'log.txt'
 reserve_copy_path = 'reserve_copy.txt'
@@ -33,8 +32,9 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
-    dict_list = id(import_path) # думаю, что список должен заполниться при запуске программы.
+    dict_list = id(import_path)
     while True:
+        log_act(f'зашел в главное меню', log_path)
         print('\nГлавное меню')
         print('1. Просмотр записей')
         print('2. Добавить запись')
@@ -45,6 +45,7 @@ def phonebook_interface():
         print('7.Завершение работы')
         user_click = check_user_click((input("\nВыберите пункт меню: ")))
         if user_click == 1:
+            log_act(f'просматривал записи', log_path)
             print("В базе есть следующие записи: \n")
             vr()
         elif user_click == 2:
@@ -58,15 +59,18 @@ def phonebook_interface():
             print(dict_list)
 
         elif user_click == 3:
+            log_act(f'экспортировал данные', log_path)
             ed(dict_list, export_path)
 
         elif user_click == 4:
+            log_act(f'импортировал данные', log_path)
             dict_list = id(import_path)
             print(dict_list)
 
         elif user_click == 5:
             user_click = check_user_click(sim())
             user_search_canon, user_search_value = smc(user_click)
+            log_act(f'искал контакт с {user_search_canon}:{user_search_value}', log_path)
             sp(dict_list, user_search_canon, user_search_value)
         elif user_click == 6:
             user_click = check_user_click(sim())
@@ -75,8 +79,10 @@ def phonebook_interface():
             dp(dict_list, user_search_canon, user_search_value)
         elif user_click == 7:
             rd(dict_list, reserve_copy_path)
+            log_act(f'вышел из программы', log_path)
             print("До свидания!")
         else:
+            log_act(f'неверно воспользовался меню', log_path)
             print("Такого пункта нет.\nВведите цифру из меню.")
 
 
