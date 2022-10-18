@@ -79,7 +79,7 @@ def phonebook_interface():
                 dp(dict_list, user_search_canon, user_search_value)
             else:
                 log_act(f'хотел удалить контакт с критерием:{user_search_canon} '
-                        f' и значением {user_search_value}', log_path)
+                        f' и значением: {user_search_value}', log_path)
         elif user_click == 7:
             rd(dict_list, reserve_copy_path)
             log_act(f'вышел из программы', log_path)
