@@ -23,6 +23,3 @@ def import_data(path):
         dict_ = {temp[i] : temp[i + 1] for i in range(0, len(temp) - 1, 2)}
         lines.append(dict_)
     return(lines)
-
-
-
