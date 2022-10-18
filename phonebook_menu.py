@@ -51,10 +51,10 @@ def phonebook_interface():
                 rnc(dic_cont, path)
                 log_act(f'добавил контакт:{dic_cont.get("Фамилия")}', log_path)
                 dict_list.append(dic_cont)
+                print(dict_list)
             else:
-                dict_list = check(dict_list, dic_cont)
-            print(dict_list)
-
+                check(dict_list, dic_cont)
+                continue
         elif user_click == 3:
             ed(dict_list, export_path)
 
