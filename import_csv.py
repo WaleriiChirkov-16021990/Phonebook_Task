@@ -13,7 +13,7 @@ def import_data(path):
     from_file = []
     read_lst_dct = []
 
-    with open(path, 'r', newline='') as csvfile:
+    with open(path, 'r',encoding='utf-8', newline='') as csvfile:
         file_reader = csv.reader(csvfile, delimiter=',')
         for row in file_reader:
             from_file.append(row)
@@ -32,12 +32,12 @@ def import_data(path):
         return read_lst_dct
 
 
-# while True:
-#     read_path = input('Введите путь к файлу: ')
-#     if os.path.exists(read_path):
-#         if os.path.isfile(read_path):
-#             import_data(read_path)
-#             break
-#     else:
-#         print('Введите корректный путь к файлу')
+#while True:
+#    read_path = input('Введите путь к файлу: ')
+#    if os.path.exists(read_path):
+#        if os.path.isfile(read_path):
+#            import_data(read_path)
+#            break
+#   else:
+#        print('Введите корректный путь к файлу')
 
