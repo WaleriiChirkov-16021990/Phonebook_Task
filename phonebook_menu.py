@@ -7,6 +7,7 @@ from export_data import export_data as ed
 from import_data import import_data as id
 from search_data import search_person as sp
 from search_data import delete_person as dp
+from check_new_contact import check_new_contact as check
 
 
 
@@ -38,17 +39,20 @@ def phonebook_interface():
         print('4. Импорт данных')
         print('5. Поиск записи')
         print('6. Удаление записи')
-        print('7. Завершение работы')
-        print('8. Показать словарь') # для тестирования
+        print('7. Показать словарь') # для тестирования
+        print('8. Завершение работы')
         user_click = check_user_click((input("\nВыберите пункт меню: ")))
         if user_click == 1:
             print("В базе есть следующие записи: \n")
             vr()
         elif user_click == 2:
             dic_cont = anc()
-            rnc(dic_cont, path)
-            log_act(f'добавил контакт:{dic_cont.get("Фамилия")}', log_path)
-            dict_list.append(dic_cont)
+            if not check(dict_list, dic_cont):
+                rnc(dic_cont, path)
+                log_act(f'добавил контакт:{dic_cont.get("Фамилия")}', log_path)
+                dict_list.append(dic_cont)
+            else:
+                dict_list = check(dict_list, dic_cont)
             print(dict_list)
 
         elif user_click == 3:
@@ -150,14 +154,13 @@ def phonebook_interface():
                 print("Некорректный ввод. Возврат к главному меню.")
 
         elif user_click == 7:
-            rd(dic_cont, reserve_copy_path)
-            print("До свидания!")
-
-        elif user_click == 8:
             try:
                 print(dict_list)
             except UnboundLocalError:
                 print("Словарь пуст")
+        elif user_click == 8:
+            rd(dic_cont, reserve_copy_path)
+            print("До свидания!")
         else:
             print("Такого пункта нет.\nВведите цифру из меню.")
 
