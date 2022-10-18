@@ -18,6 +18,8 @@ export_path = 'export_data.txt'
 import_path = 'records_db.txt'
 
 
+
+
 print("Добро пожаловать в интерактивное меню телефонного справочника!\n"
       "Пожалуйста, воспользуйтесь меню для дальнейшей работы.")
 
@@ -41,7 +43,7 @@ def phonebook_interface():
         print('5. Поиск записи')
         print('6. Удаление записи')
         print('7. Завершение работы')
-        print('8. Показать словарь') # для тестирования
+        print('8. Показать словарь')  # для тестирования
         user_click = check_user_click((input("\nВыберите пункт меню: ")))
         if user_click == 1:
             print("В базе есть следующие записи: \n")
@@ -51,14 +53,14 @@ def phonebook_interface():
             rnc(dic_cont, path)
             log_act(f'добавил контакт:{dic_cont.get("Фамилия")}', log_path)
             dict_list.append(dic_cont)
-            print(dict_list)
+            #print(dict_list)
 
         elif user_click == 3:
             ed(dict_list, export_path)
 
         elif user_click == 4:
             dict_list = id(import_path)
-            print(dict_list)
+            #print(dict_list)
 
         elif user_click == 5:
             print("Вы в меню поиска")
