@@ -75,8 +75,11 @@ def phonebook_interface():
         elif user_click == 6:
             user_click = check_user_click(sim())
             user_search_canon, user_search_value = smc(user_click)
-            sp(dict_list, user_search_canon, user_search_value)
-            dp(dict_list, user_search_canon, user_search_value)
+            if sp(dict_list, user_search_canon, user_search_value):
+                dp(dict_list, user_search_canon, user_search_value)
+            else:
+                log_act(f'хотел удалить контакт с критерием:{user_search_canon} '
+                        f' и значением {user_search_value}', log_path)
         elif user_click == 7:
             rd(dict_list, reserve_copy_path)
             log_act(f'вышел из программы', log_path)
