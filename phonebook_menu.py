@@ -42,7 +42,7 @@ def phonebook_interface():
         print('4. Импорт данных')
         print('5. Поиск записи')
         print('6. Удаление записи')
-        print('7.Завершение работы')
+        print('7. Завершение работы')
         user_click = check_user_click((input("\nВыберите пункт меню: ")))
         if user_click == 1:
             log_act(f'просматривал записи', log_path)
