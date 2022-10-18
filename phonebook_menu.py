@@ -14,7 +14,6 @@ from export_csv import export_csv as ec
 
 
 path = 'records_db.txt'
-log_path = 'log.txt'
 reserve_copy_path = 'reserve_copy.txt'
 export_path = 'export_data.txt'
 import_path = 'records_db.txt'
@@ -36,7 +35,7 @@ def phonebook_interface():
     global dict_list
     dict_list = id(import_path)
     while True:
-        log_act(f'зашел в главное меню', log_path)
+        log_act(f'зашел в главное меню')
         print('\nГлавное меню')
         print('1. Просмотр записей')
         print('2. Добавить запись')
@@ -47,37 +46,36 @@ def phonebook_interface():
         print('7. Завершение работы')
         user_click = check_user_click((input("\nВыберите пункт меню: ")))
         if user_click == 1:
-            log_act(f'просматривал записи', log_path)
+            log_act(f'просматривал записи')
             print("В базе есть следующие записи: \n")
             vr()
         elif user_click == 2:
             dic_cont = anc()
             if not check(dict_list, dic_cont):
                 rnc(dic_cont, path)
-                log_act(f'добавил контакт:{dic_cont.get("Фамилия")}', log_path)
+                log_act(f'добавил контакт:{dic_cont.get("Фамилия")}')
                 dict_list.append(dic_cont)
                 print(dict_list)
-            else:
         elif user_click == 3:
             print('1.Экспорт в .csv')
             print('2.Экспорт в .txt')
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
-                log_act(f'экспортировал данные', log_path)
+                log_act(f'экспортировал данные')
                 ec(dict_list, export_path)
             if user_click == 2:
-                log_act(f'экспортировал данные', log_path)
+                log_act(f'экспортировал данные')
                 ed(dict_list, export_path)
 
         elif user_click == 4:
-            log_act(f'импортировал данные', log_path)
+            log_act(f'импортировал данные')
             dict_list = id(import_path)
             print(dict_list)
 
         elif user_click == 5:
             user_click = check_user_click(sim())
             user_search_canon, user_search_value = smc(user_click)
-            log_act(f'искал контакт с {user_search_canon}:{user_search_value}', log_path)
+            log_act(f'искал контакт с {user_search_canon}:{user_search_value}')
             sp(dict_list, user_search_canon, user_search_value)
         elif user_click == 6:
             user_click = check_user_click(sim())
@@ -86,10 +84,10 @@ def phonebook_interface():
                 dp(dict_list, user_search_canon, user_search_value)
             else:
                 log_act(f'хотел удалить контакт с критерием:{user_search_canon} '
-                        f' и значением: {user_search_value}', log_path)
+                        f' и значением: {user_search_value}')
         elif user_click == 7:
             rd(dict_list, reserve_copy_path)
-            log_act(f'вышел из программы', log_path)
+            log_act(f'вышел из программы')
             print("До свидания!")
             break
         else:
@@ -97,4 +95,3 @@ def phonebook_interface():
 
 
 phonebook_interface()
-
