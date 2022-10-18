@@ -8,15 +8,17 @@ from import_data import import_data as id
 from search_data import search_person as sp
 from search_data import delete_person as dp
 from check_new_contact import check_new_contact as check
+from search_data import search_interactive_menu as sim
+from search_data import search_menu_click as smc
+from export_csv import export_csv as ec
 
 
-
-dict_list = []
 path = 'records_db.txt'
 log_path = 'log.txt'
 reserve_copy_path = 'reserve_copy.txt'
 export_path = 'export_data.txt'
 import_path = 'records_db.txt'
+export_path_csv = 'export.csv'
 
 
 print("Добро пожаловать в интерактивное меню телефонного справочника!\n"
@@ -32,8 +34,9 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
-    dict_list = id(import_path) # думаю, что список должен заполниться при запуске программы.
+    dict_list = id(import_path)
     while True:
+        log_act(f'зашел в главное меню', log_path)
         print('\nГлавное меню')
         print('1. Просмотр записей')
         print('2. Добавить запись')
@@ -41,10 +44,10 @@ def phonebook_interface():
         print('4. Импорт данных')
         print('5. Поиск записи')
         print('6. Удаление записи')
-        print('7. Показать словарь') # для тестирования
-        print('8. Завершение работы')
+        print('7. Завершение работы')
         user_click = check_user_click((input("\nВыберите пункт меню: ")))
         if user_click == 1:
+            log_act(f'просматривал записи', log_path)
             print("В базе есть следующие записи: \n")
             vr()
         elif user_click == 2:
@@ -55,117 +58,40 @@ def phonebook_interface():
                 dict_list.append(dic_cont)
                 print(dict_list)
             else:
-                # check(dict_list, dic_cont)
-                # color('red', 'Данный номер уже есть в базе.')
-                continue
         elif user_click == 3:
-            ed(dict_list, export_path)
+            print('1.Экспорт в .csv')
+            print('2.Экспорт в .txt')
+            user_click = check_user_click(input('Введите пункт меню: '))
+            if user_click == 1:
+                log_act(f'экспортировал данные', log_path)
+                ec(dict_list, export_path)
+            if user_click == 2:
+                log_act(f'экспортировал данные', log_path)
+                ed(dict_list, export_path)
 
         elif user_click == 4:
+            log_act(f'импортировал данные', log_path)
             dict_list = id(import_path)
             print(dict_list)
 
         elif user_click == 5:
-            print("Вы в меню поиска")
-            print("1. Поиск по имени")
-            print("2. Поиск по фамилии")
-            print("3. Поиск по номеру телефона")
-            print("4. Поиск по описанию\n")
-            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
-            if user_click == 1:
-                search_canon = "Имя"
-                search_value = input("Введите имя для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            elif user_click == 2:
-                search_canon = "Фамилия"
-                search_value = input("Введите фамилию для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            elif user_click == 3:
-                search_canon = "Телефон"
-                search_value = input("Введите номер телефона для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            elif user_click == 4:
-                search_canon = "Описание"
-                search_value = input("Введите описание для поиска: ")
-                sp(dict_list, search_canon, search_value)
-            else:
-                print("Некорректный ввод. Возврат к главному меню.")
+            user_click = check_user_click(sim())
+            user_search_canon, user_search_value = smc(user_click)
+            log_act(f'искал контакт с {user_search_canon}:{user_search_value}', log_path)
+            sp(dict_list, user_search_canon, user_search_value)
         elif user_click == 6:
-            print("Вы в меню поиска")
-            print("1. Поиск по имени")
-            print("2. Поиск по фамилии")
-            print("3. Поиск по номеру телефона")
-            print("4. Поиск по описанию\n")
-            user_click = check_user_click(input("Выберите критерий поиска указав номер пункта: "))
-            if user_click == 1:
-                search_canon = "Имя"
-                search_value = input("Введите имя для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                if user_click == 0:
-                    continue
-                else:
-                    try:
-                        dict_list.pop(user_click - 1)
-                        print("Запись успешно удалена")
-                    except IndexError:
-                        print("Такой записи не существует")
-            elif user_click == 2:
-                search_canon = "Фамилия"
-                search_value = input("Введите фамилию для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                if user_click == 0:
-                    continue
-                else:
-                    try:
-                        dict_list.pop(user_click - 1)
-                        print("Запись успешно удалена")
-                    except IndexError:
-                        print("Такой записи не существует")
-            elif user_click == 3:
-                search_canon = "Телефон"
-                search_value = input("Введите номер телефона для поиска: ")
-                sp(dict_list, search_canon, search_value)
-                user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                if user_click == 0:
-                    continue
-                else:
-                    try:
-                        dict_list.pop(user_click)
-                        print("Запись успешно удалена")
-                    except IndexError:
-                        print("Такой записи не существует")
-            elif user_click == 4:
-                search_canon = "Описание"
-                search_value = input("Введите описание для поиска: ")
-                check_data_in_list = sp(dict_list, search_canon, search_value)
-                if check_data_in_list is True:
-                    user_click = check_user_click(input("Введите номер записи которую хотите удалить. Для выхода в главное меню "
-                                       "введите '0' "))
-                    if user_click == 0:
-                        continue
-                    else:
-                        try:
-                            dict_list.pop(user_click-1)
-                            print("Запись успешно удалена")
-                        except IndexError:
-                            print("Такой записи не существует")
-                else:
-                    print("Некорректный ввод. Возврат к главному меню.")
-
+            user_click = check_user_click(sim())
+            user_search_canon, user_search_value = smc(user_click)
+            if sp(dict_list, user_search_canon, user_search_value):
+                dp(dict_list, user_search_canon, user_search_value)
+            else:
+                log_act(f'хотел удалить контакт с критерием:{user_search_canon} '
+                        f' и значением: {user_search_value}', log_path)
         elif user_click == 7:
-            try:
-                for i in dict_list:
-                    print(i)
-            except UnboundLocalError:
-                print("Словарь пуст")
-        elif user_click == 8:
-            rd(dic_cont, reserve_copy_path)
+            rd(dict_list, reserve_copy_path)
+            log_act(f'вышел из программы', log_path)
             print("До свидания!")
+            break
         else:
             print("Такого пункта нет.\nВведите цифру из меню.")
 
