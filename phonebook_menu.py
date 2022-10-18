@@ -11,13 +11,14 @@ from check_new_contact import check_new_contact as check
 from search_data import search_interactive_menu as sim
 from search_data import search_menu_click as smc
 from export_csv import export_csv as ec
+from import_csv import import_data as idc
 
 
 path = 'records_db.txt'
 reserve_copy_path = 'reserve_copy.txt'
 export_path = 'export_data.txt'
 import_path = 'records_db.txt'
-export_path_csv = 'export.csv'
+import_path_csv = 'export.csv'
 
 
 print("Добро пожаловать в интерактивное меню телефонного справочника!\n"
@@ -62,14 +63,21 @@ def phonebook_interface():
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
                 log_act(f'экспортировал данные')
-                ec(dict_list, export_path)
+                ec(dict_list)
             if user_click == 2:
                 log_act(f'экспортировал данные')
                 ed(dict_list, export_path)
 
         elif user_click == 4:
-            log_act(f'импортировал данные')
-            dict_list = id(import_path)
+            print('1.Импорт в .csv')
+            print('2.Импорт в .txt')
+            user_click = check_user_click(input('Введите пункт меню: '))
+            if user_click == 1:
+                dict_list = idc(import_path_csv)
+                log_act(f'импортировал данные')
+            else:
+                dict_list = id(import_path_csv)
+                log_act(f'импортировал данные')
             print(dict_list)
 
         elif user_click == 5:
