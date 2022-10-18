@@ -101,6 +101,10 @@ def phonebook_interface():
             log_act(f'вышел из программы')
             print("До свидания!")
             break
+        elif user_click == 8:
+            dict_list = []
+        elif user_click == 9:
+            print(dict_list)
         else:
             print("Такого пункта нет.\nВведите цифру из меню.")
 
