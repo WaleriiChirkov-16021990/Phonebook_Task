@@ -55,7 +55,8 @@ def phonebook_interface():
                 dict_list.append(dic_cont)
                 print(dict_list)
             else:
-                check(dict_list, dic_cont)
+                # check(dict_list, dic_cont)
+                # color('red', 'Данный номер уже есть в базе.')
                 continue
         elif user_click == 3:
             ed(dict_list, export_path)
