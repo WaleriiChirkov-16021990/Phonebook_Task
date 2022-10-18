@@ -7,4 +7,5 @@ def export_csv(sorce_dict, path):
         writer.writeheader()
         for i in sorce_dict:
             writer.writerow(i)
+    print('Справочник успешно экспортирован!\n')
 

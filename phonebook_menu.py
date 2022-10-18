@@ -10,6 +10,7 @@ from search_data import delete_person as dp
 from check_new_contact import check_new_contact as check
 from search_data import search_interactive_menu as sim
 from search_data import search_menu_click as smc
+from export_csv import export_csv as ec
 
 
 path = 'records_db.txt'
@@ -17,6 +18,7 @@ log_path = 'log.txt'
 reserve_copy_path = 'reserve_copy.txt'
 export_path = 'export_data.txt'
 import_path = 'records_db.txt'
+export_path_csv = 'export.csv'
 
 
 print("Добро пожаловать в интерактивное меню телефонного справочника!\n"
@@ -56,11 +58,17 @@ def phonebook_interface():
                 dict_list.append(dic_cont)
             else:
                 dict_list = check(dict_list, dic_cont)
-            print(dict_list)
 
         elif user_click == 3:
-            log_act(f'экспортировал данные', log_path)
-            ed(dict_list, export_path)
+            print('1.Экспорт в .csv')
+            print('2.Экспорт в .txt')
+            user_click = check_user_click(input('Введите пункт меню: '))
+            if user_click == 1:
+                log_act(f'экспортировал данные', log_path)
+                ec(dict_list, export_path)
+            if user_click == 2:
+                log_act(f'экспортировал данные', log_path)
+                ed(dict_list, export_path)
 
         elif user_click == 4:
             log_act(f'импортировал данные', log_path)
@@ -84,6 +92,7 @@ def phonebook_interface():
             rd(dict_list, reserve_copy_path)
             log_act(f'вышел из программы', log_path)
             print("До свидания!")
+            break
         else:
             print("Такого пункта нет.\nВведите цифру из меню.")
 
