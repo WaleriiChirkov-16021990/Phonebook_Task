@@ -1,3 +1,4 @@
+from re import U
 import os
 from phonebook_view_records import view_records as vrf
 from add_new_contact import add_new_contact as anc
@@ -32,7 +33,7 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
-    dict_list = id(path)
+    dict_list = idd(path)
     print("Добро пожаловать в интерактивное меню телефонного справочника!")
     print('Пожалуйста, воспользуйтесь меню для дальнейшей работы.')
     while True:
@@ -81,6 +82,8 @@ def phonebook_interface():
             elif user_click == 2:
                 dict_list = idd(import_path)
                 log_act(f'импортировал данные')
+            print(dict_list)
+
         elif user_click == 5:
             user_click = check_user_click(sim())
             user_search_canon, user_search_value = smc(user_click)
