@@ -116,6 +116,8 @@ def phonebook_interface():
                     path_view = import_path
                 elif user_selec == '5':
                     path_view = import_path_csv
+                else:
+                    path_view = user_selec
             else:
                 path_view = user_selec
             print(path_view)
