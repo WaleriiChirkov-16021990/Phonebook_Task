@@ -4,7 +4,7 @@ from add_new_contact import rec_new_contact as rnc
 from phonebook_logger import logger_action as log_act
 from reserve_update import reserve_data as rd
 from export_data import export_data as ed
-from import_data import import_data as id
+from import_data import import_data as idd
 from search_data import search_person as sp
 from search_data import delete_person as dp
 from check_new_contact import check_new_contact as check
@@ -31,7 +31,7 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
-    dict_list = id(path)
+    dict_list = idd(path)
     print("Добро пожаловать в интерактивное меню телефонного справочника!")
     print('Пожалуйста, воспользуйтесь меню для дальнейшей работы.')
     while True:
@@ -52,12 +52,15 @@ def phonebook_interface():
             vr(dict_list)
         elif user_click == 2:
             dic_cont = anc()
-            if not check(dict_list, dic_cont):
-                rnc(dic_cont, path)
-                log_act(f'добавил контакт:{dic_cont.get("Фамилия")}')
-                dict_list.append(dic_cont)
+            if dic_cont:
+                if not check(dict_list, dic_cont):
+                    rnc(dic_cont, path)
+                    log_act(f'добавил контакт:{dic_cont.get("Фамилия")}')
+                    dict_list.append(dic_cont)
+                else:
+                    dict_list = check(dict_list, dic_cont)
             else:
-                dict_list = check(dict_list, dic)
+                dict_list = dict_list
             print(dict_list)
         elif user_click == 3:
             print('1.Экспорт в .csv')
@@ -78,9 +81,8 @@ def phonebook_interface():
                 dict_list = idc(import_path_csv)
                 log_act(f'импортировал данные из файла: {import_path_csv}')
             elif user_click == 2:
-                dict_list = id(import_path)
+                dict_list = idd(import_path)
                 log_act(f'импортировал данные из файла: {import_path}')
-            print(dict_list)
 
         elif user_click == 5:
             user_click = check_user_click(sim())

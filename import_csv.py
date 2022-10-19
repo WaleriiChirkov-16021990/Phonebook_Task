@@ -6,7 +6,7 @@ from color_out_text import out_white as white
 # Блок считывает файл csv, и создает список контактов \
 # где каждый элемент списка это словарь каждого контакта.
 
-# Метод проверяет что в строке есть номер телефона и возвращает тру или фолс.
+# Метод проверяет что в строке есть номер телефона и возвращает тру или
 def check_char(x):
     reg = re.search(r'\D\d{5,11}\D+$', x)
     return True if reg else False
@@ -18,8 +18,6 @@ def import_data(path):
     read_lst_dct = []
     with open(path, 'r',encoding='utf-8', newline='') as csvfile:
         file_reader = list(csv.reader(csvfile, delimiter=','))
-        print(file_reader)
-        print(type(file_reader))
         from_file = [i for i in file_reader if check_char(''.join(i))]
         lines = [i for i in from_file if i]
         for list_ in lines:
