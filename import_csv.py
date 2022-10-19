@@ -3,7 +3,10 @@ import re
 from color_out_text import out_blue as blue
 from color_out_text import out_white as white
 
+# Блок считывает файл csv, и создает список контактов \
+# где каждый элемент списка это словарь каждого контакта.
 
+# Метод проверяет что в строке есть номер телефона и возвращает тру или
 def check_char(x):
     reg = re.search(r'\D\d{5,11}\D+$', x)
     return True if reg else False
@@ -13,7 +16,7 @@ def import_data(path):
     lines = None
     from_file = None
     read_lst_dct = []
-    with open(path, 'r', encoding='utf-8', newline='') as csvfile:
+    with open(path, 'r',encoding='utf-8', newline='') as csvfile:
         file_reader = list(csv.reader(csvfile, delimiter=','))
         from_file = [i for i in file_reader if check_char(''.join(i))]
         lines = [i for i in from_file if i]

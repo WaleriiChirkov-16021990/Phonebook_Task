@@ -10,7 +10,7 @@ def export_data(dates, path):
     with open(path, 'w', encoding='utf-8') as data:
         for i in dates:
             for keys, values in i.items():
-                data.write(f'{keys}' f'\t{values}\n')
+                data.write(f'{keys} : \t{values}\n')
             data.write('\n')
     blue(f'\nСправочник успешно экспортирован в файл: {path}!\n')
     white('')

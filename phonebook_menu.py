@@ -1,5 +1,3 @@
-from re import U
-import os
 from phonebook_view_records import view_records as vrf
 from add_new_contact import add_new_contact as anc
 from add_new_contact import rec_new_contact as rnc
@@ -33,7 +31,7 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
-    dict_list = idc(path)
+    dict_list = idd(path)
     print("Добро пожаловать в интерактивное меню телефонного справочника!")
     print('Пожалуйста, воспользуйтесь меню для дальнейшей работы.')
     while True:
@@ -63,15 +61,16 @@ def phonebook_interface():
                     dict_list = check(dict_list, dic_cont)
             else:
                 dict_list = dict_list
+            print(dict_list)
         elif user_click == 3:
             print('1.Экспорт в .csv')
             print('2.Экспорт в .txt')
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
-                log_act(f'экспортировал данные')
-                ec(dict_list)
+                log_act(f'экспортировал данные в файл: {import_path_csv}')
+                ec(dict_list, import_path_csv)
             if user_click == 2:
-                log_act(f'экспортировал данные')
+                log_act(f'экспортировал данные в файл: {export_path}')
                 ed(dict_list, export_path)
 
         elif user_click == 4:
@@ -80,11 +79,10 @@ def phonebook_interface():
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
                 dict_list = idc(import_path_csv)
-                log_act(f'импортировал данные')
+                log_act(f'импортировал данные из файла: {import_path_csv}')
             elif user_click == 2:
                 dict_list = idd(import_path)
-                log_act(f'импортировал данные')
-            print(dict_list)
+                log_act(f'импортировал данные из файла: {import_path}')
 
         elif user_click == 5:
             user_click = check_user_click(sim())
@@ -119,12 +117,10 @@ def phonebook_interface():
                     path_view = import_path
                 elif user_selec == '5':
                     path_view = import_path_csv
-            else:
-                if os.path.isfile(user_selec):
-                    path_view = user_selec
                 else:
-                    print("Такого файла не существует")
-                    continue
+                    path_view = user_selec
+            else:
+                path_view = user_selec
             print(path_view)
             print("В базе есть следующие записи: \n")
             vrf(path_view)

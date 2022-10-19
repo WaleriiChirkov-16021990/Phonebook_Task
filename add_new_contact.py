@@ -4,11 +4,13 @@
 #  Далее программа возвращает пользователя в интерфейс главного меню,\
 #  для выбора дальнейших операций.
 
+
 from import_csv import check_char as check
 from color_out_text import out_white as white
 from color_out_text import out_red as red
 from color_out_text import out_yellow as yellow
 import re
+
 
 path = 'records_db.txt'
 
@@ -35,8 +37,7 @@ def add_new_contact():
                     raise ValueError
             except ValueError:
                 yellow('\nВы ввели не корректные данные.\
-                    \nВведите данные согласно порядку указанному выше через пробел '
-                       '(4 параметра включая номер из 3+ цифр).  ')
+                    \nВведите данные согласно порядку указанному выше черезпробел (4 параметра включая номер из 3+ цифр).  ')
                 count -= 1
                 print(f'Осталось попыток: {count} .\n')
                 white('')
@@ -46,10 +47,11 @@ def add_new_contact():
             white('')
             return False
     print('\nСоздан новый контакт.\n\n')
-
     dicts_contact = {'Имя': data_inp[0], 'Фамилия': data_inp[1], 'Телефон': data_inp[2], 'Описание': data_inp[3]}
     for keys, values in dicts_contact.items():
         print(f'{keys}: \t{values}')
+    return dicts_contact
+
 
 def record_data(path, contact):
     with open(path, 'a', encoding='utf-8') as data:
@@ -75,5 +77,3 @@ def rec_new_contact(data: dict, path: str):
         return True
     else:
         return False
-
-

@@ -24,4 +24,3 @@ def new_get_record():
     return records_info
 
 
-
