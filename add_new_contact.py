@@ -13,6 +13,8 @@ def add_new_contact(a=None):
     data_inp = input(
         'Введите данные нового контакта через пробел\n: ').split(' ')
     print('\nСоздан новый контакт.\n\n')
+    if len(data_inp)== 3:
+        data_inp.append('Пусто')
     dicts_contact = {'Имя': data_inp[0], 'Фамилия': data_inp[1], 'Телефон': data_inp[2], 'Описание': data_inp[3]}
     for keys, values in dicts_contact.items():
         print(f'{keys}: \t{values}')

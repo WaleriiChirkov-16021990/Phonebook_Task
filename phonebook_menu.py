@@ -1,4 +1,3 @@
-from re import U
 from phonebook_view_records import view_records as vrf
 from add_new_contact import add_new_contact as anc
 from add_new_contact import rec_new_contact as rnc
@@ -65,10 +64,10 @@ def phonebook_interface():
             print('2.Экспорт в .txt')
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
-                log_act(f'экспортировал данные')
-                ec(dict_list)
+                log_act(f'экспортировал данные в файл: {import_path_csv}')
+                ec(dict_list, import_path_csv)
             if user_click == 2:
-                log_act(f'экспортировал данные')
+                log_act(f'экспортировал данные в файл: {export_path}')
                 ed(dict_list, export_path)
 
         elif user_click == 4:
@@ -77,10 +76,10 @@ def phonebook_interface():
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
                 dict_list = idc(import_path_csv)
-                log_act(f'импортировал данные')
+                log_act(f'импортировал данные из файла: {import_path_csv}')
             elif user_click == 2:
                 dict_list = id(import_path)
-                log_act(f'импортировал данные')
+                log_act(f'импортировал данные из файла: {import_path}')
             print(dict_list)
 
         elif user_click == 5:

@@ -1,26 +1,27 @@
 import csv
-import os
+import re
+from color_out_text import out_blue as blue
+from color_out_text import out_white as white
+
 # Блок считывает файл csv, и создает список контактов \
 # где каждый элемент списка это словарь каждого контакта.
 
-
-#path = 'exp_contacts.csv'
-#path1 = r"C:\Users\Sergio\Desktop\Поездка в Минск\exp_contacts1.csv"
+# Метод проверяет что в строке есть номер телефона и возвращает тру или фолс.
+def check_char(x):
+    reg = re.search(r'\D\d{5,11}\D+$', x)
+    return True if reg else False
 
 
 def import_data(path):
-    lines = []
-    from_file = []
+    lines = None
+    from_file = None
     read_lst_dct = []
-
     with open(path, 'r',encoding='utf-8', newline='') as csvfile:
-        file_reader = csv.reader(csvfile, delimiter=',')
-        for row in file_reader:
-            from_file.append(row)
-        del from_file[0]
-        for i in from_file:
-            if i:
-                lines.append(i)
+        file_reader = list(csv.reader(csvfile, delimiter=','))
+        print(file_reader)
+        print(type(file_reader))
+        from_file = [i for i in file_reader if check_char(''.join(i))]
+        lines = [i for i in from_file if i]
         for list_ in lines:
             tmp_dct = {'Имя': "", 'Фамилия': "", 'Телефон': "", 'Описание': ""}
             tmp_dct['Имя'] = list_[0]
@@ -28,16 +29,6 @@ def import_data(path):
             tmp_dct['Телефон'] = list_[2]
             tmp_dct['Описание'] = list_[3]
             read_lst_dct.append(tmp_dct)
-        print(read_lst_dct)
+        blue(f'\nСправочник успешно импортирован из файла: {path}!\n')
+        white('')
         return read_lst_dct
-
-
-#while True:
-#    read_path = input('Введите путь к файлу: ')
-#    if os.path.exists(read_path):
-#        if os.path.isfile(read_path):
-#            import_data(read_path)
-#            break
-#   else:
-#        print('Введите корректный путь к файлу')
-

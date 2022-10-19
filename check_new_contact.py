@@ -23,5 +23,7 @@ def check_new_contact(data, new_contact):
         if user_select.lower == 'да' or 'yes' or 'y':
             return [data[i] if data[i][sc] != sv else nc \
                     for i in range(len(data))]
+        else:
+            return data
     else:
         return False
