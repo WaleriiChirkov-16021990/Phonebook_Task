@@ -61,7 +61,6 @@ def phonebook_interface():
                     dict_list = check(dict_list, dic_cont)
             else:
                 dict_list = dict_list
-            print(dict_list)
         elif user_click == 3:
             print('1.Экспорт в .csv')
             print('2.Экспорт в .txt')

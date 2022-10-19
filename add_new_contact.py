@@ -48,8 +48,6 @@ def add_new_contact():
             return False
     print('\nСоздан новый контакт.\n\n')
     dicts_contact = {'Имя': data_inp[0], 'Фамилия': data_inp[1], 'Телефон': data_inp[2], 'Описание': data_inp[3]}
-    for keys, values in dicts_contact.items():
-        print(f'{keys}: \t{values}')
     return dicts_contact
 
 
