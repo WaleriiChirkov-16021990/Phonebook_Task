@@ -1,8 +1,7 @@
 # Блок считывает файл, и создает список контактов \
 # где каждый элемент списка это словарь каждого контакта.
-
-
-path = 'records_db.txt'
+from color_out_text import out_blue as blue
+from color_out_text import out_white as white
 
 
 def import_data(path):
@@ -22,7 +21,6 @@ def import_data(path):
         temp = date_lo[j:j+8:1]
         dict_ = {temp[i] : temp[i + 1] for i in range(0, len(temp) - 1, 2)}
         lines.append(dict_)
+    blue(f'\nСправочник успешно импортирован из файла: {path}!\n')
+    white('')
     return(lines)
-
-
-
