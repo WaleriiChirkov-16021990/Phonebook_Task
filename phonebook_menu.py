@@ -1,4 +1,5 @@
 from re import U
+import os
 from phonebook_view_records import view_records as vrf
 from add_new_contact import add_new_contact as anc
 from add_new_contact import rec_new_contact as rnc
@@ -117,7 +118,11 @@ def phonebook_interface():
                 elif user_selec == '5':
                     path_view = import_path_csv
             else:
-                path_view = user_selec
+                if os.path.isfile(user_selec):
+                    path_view = user_selec
+                else:
+                    print("Такого файла не существует")
+                    continue
             print(path_view)
             print("В базе есть следующие записи: \n")
             vrf(path_view)
