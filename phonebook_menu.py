@@ -54,13 +54,15 @@ def phonebook_interface():
             vr(dict_list)
         elif user_click == 2:
             dic_cont = anc()
-            if not check(dict_list, dic_cont):
-                rnc(dic_cont, path)
-                log_act(f'добавил контакт:{dic_cont.get("Фамилия")}')
-                dict_list.append(dic_cont)
+            if dic_cont:
+                if not check(dict_list, dic_cont):
+                    rnc(dic_cont, path)
+                    log_act(f'добавил контакт:{dic_cont.get("Фамилия")}')
+                    dict_list.append(dic_cont)
+                else:
+                    dict_list = check(dict_list, dic_cont)
             else:
-                dict_list = check(dict_list, dic_cont)
-            print(dict_list)
+                dict_list = dict_list
         elif user_click == 3:
             print('1.Экспорт в .csv')
             print('2.Экспорт в .txt')
@@ -77,7 +79,7 @@ def phonebook_interface():
             print('2.Импорт в .txt')
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
-                dict_list = idc(import_path_csv)
+                dict_list = idс(import_path_csv)
                 log_act(f'импортировал данные')
             elif user_click == 2:
                 dict_list = idd(import_path)
