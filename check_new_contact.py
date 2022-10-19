@@ -7,14 +7,8 @@
 
 
 from search_data import search_person as sp
-
-
-def out_red(text):
-    print("\033[31m {}" .format(text))
-
-
-def out_white(text):
-    print("\033[37m {}" .format(text))
+from color_out_text import out_red as out_red
+from color_out_text import out_white as out_white
 
 
 def check_new_contact(data, new_contact):
