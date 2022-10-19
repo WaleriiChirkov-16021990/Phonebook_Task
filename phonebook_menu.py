@@ -33,7 +33,7 @@ def check_user_click(user_click_input):
 
 def phonebook_interface():
     global dict_list
-    dict_list = idd(path)
+    dict_list = idc(path)
     print("Добро пожаловать в интерактивное меню телефонного справочника!")
     print('Пожалуйста, воспользуйтесь меню для дальнейшей работы.')
     while True:
@@ -79,7 +79,7 @@ def phonebook_interface():
             print('2.Импорт в .txt')
             user_click = check_user_click(input('Введите пункт меню: '))
             if user_click == 1:
-                dict_list = idс(import_path_csv)
+                dict_list = idc(import_path_csv)
                 log_act(f'импортировал данные')
             elif user_click == 2:
                 dict_list = idd(import_path)
