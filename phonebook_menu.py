@@ -129,6 +129,8 @@ def phonebook_interface():
                 vrf(path_view)
                 log_act(f'Предпросматривал записи в файле: {path_view}')
             else:
+                log_act(\
+                    f'Пытался посмотреть файл: {path_view} <Файла нет>')
                 out_red("\nТакого файла не существует")
                 out_white('')
                 continue
