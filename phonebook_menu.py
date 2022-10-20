@@ -119,13 +119,13 @@ def phonebook_interface():
                     path_view = import_path
                 elif user_selec == '5':
                     path_view = import_path_csv
-            else:
-                if os.path.isfile(user_selec):
-                    path_view = user_selec
                 else:
                     out_red("\nТакого файла не существует")
                     out_white('')
                     continue
+                    path_view = user_selec
+            else:
+                path_view = user_selec
             print(path_view)
             print("В базе есть следующие записи: \n")
             vrf(path_view)
