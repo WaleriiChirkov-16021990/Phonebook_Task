@@ -1,4 +1,4 @@
-import os
+import os.path
 from phonebook_view_records import view_records as vrf
 from add_new_contact import add_new_contact as anc
 from add_new_contact import rec_new_contact as rnc
@@ -120,16 +120,18 @@ def phonebook_interface():
                 elif user_selec == '5':
                     path_view = import_path_csv
                 else:
-                    out_red("\nТакого файла не существует")
-                    out_white('')
-                    continue
                     path_view = user_selec
             else:
                 path_view = user_selec
-            print(path_view)
-            print("В базе есть следующие записи: \n")
-            vrf(path_view)
-            log_act(f'Предпросматривал записи в файле: {path_view}')
+            if os.path.isfile(path_view):
+                print(path_view)
+                print("В базе есть следующие записи: \n")
+                vrf(path_view)
+                log_act(f'Предпросматривал записи в файле: {path_view}')
+            else:
+                out_red("\nТакого файла не существует")
+                out_white('')
+                continue
         elif user_click == 8:
             rd(dict_list, path)
             if len(dict_list) >= 5:
@@ -139,7 +141,8 @@ def phonebook_interface():
             print("До свидания!")
             break
         else:
-            print("Такого пункта нет.\nВведите цифру из меню.")
+            out_red("Такого пункта нет.")
+            out_white("Введите цифру из меню.")
 
 
 phonebook_interface()
