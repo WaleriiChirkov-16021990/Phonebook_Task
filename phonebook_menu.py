@@ -14,6 +14,8 @@ from search_data import search_menu_click as smc
 from export_csv import export_csv as ec
 from import_csv import import_data as idc
 from view_current_data import view_records as vr
+from color_out_text import out_red as out_red
+from color_out_text import out_white as out_white
 
 
 path = 'records_db.txt'
@@ -121,7 +123,8 @@ def phonebook_interface():
                 if os.path.isfile(user_selec):
                     path_view = user_selec
                 else:
-                    print("Такого файла не существует")
+                    out_red("\nТакого файла не существует")
+                    out_white('')
                     continue
             print(path_view)
             print("В базе есть следующие записи: \n")
@@ -129,7 +132,7 @@ def phonebook_interface():
             log_act(f'Предпросматривал записи в файле: {path_view}')
         elif user_click == 8:
             rd(dict_list, path)
-            if len(dict_list) > 3:
+            if len(dict_list) >= 5:
                 rd(dict_list, reserve_copy_path)
                 log_act(f'перезаписал резервную копию.')
             log_act(f'вышел из программы')

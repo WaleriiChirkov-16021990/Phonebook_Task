@@ -23,7 +23,7 @@ def search_person(dict_list: list, search_canon, search_value):
     count = 1  # в таблицах нумерация начинается с единицы обычно
     for j in dict_list:
         count += 1
-        if j[search_canon] == search_value:
+        if (j[search_canon]).lower() == search_value.lower():
             print(count - 1, j)
             if_correct = True
     if not if_correct:
