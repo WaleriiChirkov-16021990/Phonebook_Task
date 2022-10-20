@@ -1,3 +1,4 @@
+import os
 from phonebook_view_records import view_records as vrf
 from add_new_contact import add_new_contact as anc
 from add_new_contact import rec_new_contact as rnc
@@ -13,6 +14,8 @@ from search_data import search_menu_click as smc
 from export_csv import export_csv as ec
 from import_csv import import_data as idc
 from view_current_data import view_records as vr
+from color_out_text import out_red as out_red
+from color_out_text import out_white as out_white
 
 
 path = 'records_db.txt'
@@ -61,6 +64,7 @@ def phonebook_interface():
                     dict_list = check(dict_list, dic_cont)
             else:
                 dict_list = dict_list
+            print(dict_list)
         elif user_click == 3:
             print('1.Экспорт в .csv')
             print('2.Экспорт в .txt')
@@ -94,10 +98,9 @@ def phonebook_interface():
             if sp(dict_list, user_search_canon, user_search_value):
                 dp(dict_list, user_search_canon, user_search_value)
             else:
-                log_act(f'хотел удалить контакт с критерием:{user_search_canon} '
-                        f' и значением: {user_search_value}')
+                log_act(f'хотел удалить контакт с критерием: {user_search_canon} и значением: {user_search_value}')
         elif user_click == 7:
-            print(f'На данный момент в базу присутствуют следущие файлы \
+            print(f'На данный момент в базе присутствуют следущие файлы \
                 \n1.{path} \n2.{reserve_copy_path} \n3.{export_path}\
                  \n4.{import_path} \n5.{import_path_csv}')
             user_selec = input('Если хотите открыть файл из списка,\
@@ -117,6 +120,9 @@ def phonebook_interface():
                 elif user_selec == '5':
                     path_view = import_path_csv
                 else:
+                    out_red("\nТакого файла не существует")
+                    out_white('')
+                    continue
                     path_view = user_selec
             else:
                 path_view = user_selec
@@ -126,7 +132,9 @@ def phonebook_interface():
             log_act(f'Предпросматривал записи в файле: {path_view}')
         elif user_click == 8:
             rd(dict_list, path)
-            rd(dict_list, reserve_copy_path)
+            if len(dict_list) >= 5:
+                rd(dict_list, reserve_copy_path)
+                log_act(f'перезаписал резервную копию.')
             log_act(f'вышел из программы')
             print("До свидания!")
             break

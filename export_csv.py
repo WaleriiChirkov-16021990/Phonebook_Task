@@ -13,4 +13,6 @@ def export_csv(sorce_dict, path):
         for i in sorce_dict:
             writer.writerow(i)
     blue(f'\nСправочник успешно экспортирован в файл: {path}!\n')
+
     white('')
+

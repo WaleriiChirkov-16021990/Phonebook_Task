@@ -31,4 +31,3 @@ def import_data(path):
         white('')
         return read_lst_dct
 
-
