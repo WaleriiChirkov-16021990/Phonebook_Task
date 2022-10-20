@@ -1,3 +1,4 @@
+import os
 from phonebook_view_records import view_records as vrf
 from add_new_contact import add_new_contact as anc
 from add_new_contact import rec_new_contact as rnc
@@ -95,10 +96,9 @@ def phonebook_interface():
             if sp(dict_list, user_search_canon, user_search_value):
                 dp(dict_list, user_search_canon, user_search_value)
             else:
-                log_act(f'хотел удалить контакт с критерием:{user_search_canon} '
-                        f' и значением: {user_search_value}')
+                log_act(f'хотел удалить контакт с критерием: {user_search_canon} и значением: {user_search_value}')
         elif user_click == 7:
-            print(f'На данный момент в базу присутствуют следущие файлы \
+            print(f'На данный момент в базе присутствуют следущие файлы \
                 \n1.{path} \n2.{reserve_copy_path} \n3.{export_path}\
                  \n4.{import_path} \n5.{import_path_csv}')
             user_selec = input('Если хотите открыть файл из списка,\
@@ -117,17 +117,21 @@ def phonebook_interface():
                     path_view = import_path
                 elif user_selec == '5':
                     path_view = import_path_csv
-                else:
-                    path_view = user_selec
             else:
-                path_view = user_selec
+                if os.path.isfile(user_selec):
+                    path_view = user_selec
+                else:
+                    print("Такого файла не существует")
+                    continue
             print(path_view)
             print("В базе есть следующие записи: \n")
             vrf(path_view)
             log_act(f'Предпросматривал записи в файле: {path_view}')
         elif user_click == 8:
             rd(dict_list, path)
-            rd(dict_list, reserve_copy_path)
+            if len(dict_list) > 3:
+                rd(dict_list, reserve_copy_path)
+                log_act(f'перезаписал резервную копию.')
             log_act(f'вышел из программы')
             print("До свидания!")
             break
