@@ -8,5 +8,3 @@ def reserve_data(dat, path):
             for keys, values in j.items():
                 data.write(f'{keys} :\t{values}\n')
             data.write('\n')
-
-

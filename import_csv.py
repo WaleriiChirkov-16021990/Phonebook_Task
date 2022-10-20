@@ -30,4 +30,3 @@ def import_data(path):
         blue(f'\nСправочник успешно импортирован из файла: {path}!\n')
         white('')
         return read_lst_dct
-

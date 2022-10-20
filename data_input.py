@@ -22,5 +22,3 @@ def new_get_record():
     with open('records_db.txt', 'r', encoding='utf-8') as file:
         records_info = file.read()
     return records_info
-
-

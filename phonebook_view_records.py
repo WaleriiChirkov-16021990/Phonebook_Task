@@ -11,5 +11,3 @@ def view_records(path):
         print(i[:len(i)-1])
     yellow(f'\nСправочник прочитан в файле: {path}!\n Но не экспортирован!')
     white('')
-
-

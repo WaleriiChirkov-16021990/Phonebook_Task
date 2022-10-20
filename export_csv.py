@@ -15,4 +15,3 @@ def export_csv(sorce_dict, path):
     blue(f'\nСправочник успешно экспортирован в файл: {path}!\n')
 
     white('')
-
