@@ -9,7 +9,7 @@ def import_data(path):
     date = []
     with open(path, 'r', encoding='utf-8') as data:
         while True:
-            line = data.read().strip().split()
+            line = data.read().strip().replace(':', ' :').split()
             if not line:
                 break
             date.append(line)
