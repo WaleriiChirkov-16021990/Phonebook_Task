@@ -20,7 +20,7 @@ def imp_db(msg: telebot.types.Message):          # текста, в нужном
     downloaded_file = bot.download_file(file.file_path) # данными - невозможно
     with open(msg.document.file_name, 'wb') as f_out:
         f_out.write(downloaded_file)
-        dict_list = idd(file.file_path)
+      #  dict_list = idd(msg.document.file_name)
     bot.send_message(msg.chat.id, downloaded_file)
 
 @bot.message_handler(commands=['help'])
@@ -55,7 +55,8 @@ def main(msg: telebot.types.Message):
         bot.send_message(msg.chat.id, f' Введите данные нового контакта через пробел\n'
                                       f' Имя: \n Фамилия: \n Телефон: \n Описание \n')
         bot.register_next_step_handler(msg, create_new_contact_bot)
-        bot.send_message(msg.chat.id, "После отправки введенных данных, просмотрите все записи для проверки внесения")
+        bot.send_message(msg.chat.id, "После отправки введенных данных, просмотрите все записи для проверки внесения\n"
+                                      "Пожалуйста, напишите 'запуск' для повторного вызова меню.")
     elif msg.text == '3':
         log_act("Пользователь искал запись")
         bot.send_message(msg.chat.id, '1.Поиск по имени\n 2.Поиск по фамилии\n 3.Поиск по номеру')
