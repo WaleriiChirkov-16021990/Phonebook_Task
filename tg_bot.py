@@ -77,9 +77,14 @@ def main(msg: telebot.types.Message):
 def create_new_contact_bot(msg: telebot.types.Message):
     global dict_list
     new_contact = msg.text.split()
-    dicts_contact = {'Имя': new_contact[0], 'Фамилия': new_contact[1],
-                     'Телефон': new_contact[2], 'Описание': new_contact[3]}
-    dict_list.append(dicts_contact)
+    if len(new_contact) == 4:
+        dicts_contact = {'Имя': new_contact[0], 'Фамилия': new_contact[1],
+                         'Телефон': new_contact[2], 'Описание': new_contact[3]}
+        dict_list.append(dicts_contact)
+    else:
+        bot.send_message(msg.chat.id, 'ОШИБКА!\n'
+                                      'Вернитесь в главное меню через команду "запуск", и введите данные контакта '
+                                      'одним сообщением.')
 
 
 def find_contact_bot(msg: telebot.types.Message):
@@ -100,8 +105,8 @@ def find_contact_bot(msg: telebot.types.Message):
 
 def find_person_name(msg: telebot.types.Message):
     search_value = msg.text
-    if type(sp(dict_list, search_canon, search_value)) != str:
-        answer, count = sp(dict_list, search_canon, search_value)
+    answer, count = sp(dict_list, search_canon, search_value)
+    if answer != 0:
         result = dict_to_str(answer)
         bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}')
     else:
@@ -111,14 +116,20 @@ def find_person_name(msg: telebot.types.Message):
 def find_person_surname(msg: telebot.types.Message):
     search_value = msg.text
     answer, count = sp(dict_list, search_canon, search_value)
-    result = dict_to_str(answer)
-    bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}')
+    if answer != 0:
+        result = dict_to_str(answer)
+        bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}')
+    else:
+        bot.send_message(msg.chat.id, "Совпадний не найдено")
 
 def find_person_number(msg: telebot.types.Message):
     search_value = msg.text
     answer, count = sp(dict_list, search_canon, search_value)
-    result = dict_to_str(answer)
-    bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}')
+    if answer != 0:
+        result = dict_to_str(answer)
+        bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}')
+    else:
+        bot.send_message(msg.chat.id, "Совпадний не найдено")
 
 
 def find_contact_bot_deletion(msg: telebot.types.Message):
@@ -140,24 +151,34 @@ def find_contact_bot_deletion(msg: telebot.types.Message):
 def find_person_name_for_delete(msg: telebot.types.Message):
     search_value = msg.text
     answer, count = sp(dict_list, search_canon, search_value)
-    result = dict_to_str(answer)
-    bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}\nВведите номер ID для удаления: ')
-    bot.register_next_step_handler(msg, delete_person)
+    if answer != 0:
+        result = dict_to_str(answer)
+        bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}\nВведите номер ID для удаления: ')
+        bot.register_next_step_handler(msg, delete_person)
+    else:
+        bot.send_message(msg.chat.id, "Совпадний не найдено")
+
 
 
 def find_person_surname_for_delete(msg: telebot.types.Message):
     search_value = msg.text
     answer, count = sp(dict_list, search_canon, search_value)
-    result = dict_to_str(answer)
-    bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}\nВведите номер ID для удаления: ')
-    bot.register_next_step_handler(msg, delete_person)
+    if answer != 0:
+        result = dict_to_str(answer)
+        bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}\nВведите номер ID для удаления: ')
+        bot.register_next_step_handler(msg, delete_person)
+    else:
+        bot.send_message(msg.chat.id, "Совпадний не найдено")
 
 def find_person_number_for_delete(msg: telebot.types.Message):
     search_value = msg.text
     answer, count = sp(dict_list, search_canon, search_value)
-    result = dict_to_str(answer)
-    bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}\nВведите номер ID для удаления: ')
-    bot.register_next_step_handler(msg, delete_person)
+    if answer != 0:
+        result = dict_to_str(answer)
+        bot.send_message(msg.chat.id, f'{result}\n \nID по порядку {count}\nВведите номер ID для удаления: ')
+        bot.register_next_step_handler(msg, delete_person)
+    else:
+        bot.send_message(msg.chat.id, "Совпадний не найдено")
 
 
 def delete_person(msg: telebot.types.Message):

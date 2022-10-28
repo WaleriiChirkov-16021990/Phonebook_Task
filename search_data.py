@@ -28,7 +28,10 @@ def search_person(dict_list: list, search_canon, search_value):
         if (j[search_canon]).lower() == search_value.lower():
             result.append(j)
             count_lst.append(count - 1)
-    return result, count_lst
+    if len(result) == 0:
+        return 0, 0
+    else:
+        return result, count_lst
 
 
 
