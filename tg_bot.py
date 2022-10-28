@@ -5,6 +5,7 @@ from export_data import export_data as ed
 from import_data import import_data as idd
 from search_data import search_person as sp
 from view_current_data import view_records_bot as vrb
+import pickle
 
 
 bot = TeleBot('5795145659:AAEfn_ciZ44yKZ5mW6TsCPZziIVuAfW4LAc')
@@ -15,12 +16,11 @@ search_value = ''
 
 @bot.message_handler(content_types=['document']) # Вот на этом моменте проблема, бот отправляет данные с файла в виде
 def imp_db(msg: telebot.types.Message):          # текста, в нужном формате, но если присвоить dict_list к данным, то
-    global dict_list
     file = bot.get_file(msg.document.file_id)    # они будут в бинарном виде, и соответственно работать с импортируемыми
     downloaded_file = bot.download_file(file.file_path) # данными - невозможно
     with open(msg.document.file_name, 'wb') as f_out:
         f_out.write(downloaded_file)
-      #  dict_list = idd(msg.document.file_name)
+    #dict_list = idd(msg.document.file_name)
     bot.send_message(msg.chat.id, downloaded_file)
 
 @bot.message_handler(commands=['help'])
