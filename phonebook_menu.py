@@ -130,7 +130,11 @@ def phonebook_interface():
                 log_act(f'Предпросматривал записи в файле: {path_view}')
             else:
                 log_act(\
+<<<<<<< HEAD
                     f'Пытался посмотреть файл: {path_view} <Файла нет>')
+=======
+                    f'Пытался посмотреть файл: {path_view} <файла нет>')
+>>>>>>> c9745203a360fb9e061e57371361bb99908ee000
                 out_red("\nТакого файла не существует")
                 out_white('')
                 continue
