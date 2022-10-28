@@ -1,4 +1,5 @@
 from phonebook_logger import logger_action as log_act
+from import_data import import_data as idd
 
 log_path = 'log.txt'
 
@@ -19,16 +20,18 @@ def delete_person(dict_list: list, search_canon, search_value):
 
 
 def search_person(dict_list: list, search_canon, search_value):
-    if_correct = False
-    count = 1  # в таблицах нумерация начинается с единицы обычно
+    count = 0  # в таблицах нумерация начинается с единицы обычно
+    result = []
+    count_lst = []
     for j in dict_list:
         count += 1
         if (j[search_canon]).lower() == search_value.lower():
-            print(count - 1, j)
-            if_correct = True
-    if not if_correct:
-        print("Совпадений не найдено")
-    return if_correct
+            result.append(j)
+            count_lst.append(count - 1)
+    return result, count_lst
+
+
+
 
 
 def search_interactive_menu():
